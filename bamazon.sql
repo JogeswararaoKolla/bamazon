@@ -1,6 +1,6 @@
 
 drop database bamazon;
-create database if not exists bamazon;
+create database IF not exists bamazon;
 
 use bamazon;
 
@@ -10,8 +10,7 @@ product_name varchar(40) not null,
 department_name varchar(30) not null,
 price DECIMAL(10,2)  not null,
 stock_quantity INT not null,
-sellerUser varchar(30) not null,
-created_timestamp DATETIME not null default current_timestamp,
+created_timestamp DATETIME not null DEFAULT current_timestamp,
 lst_updt_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
    constraint price_constraint_1 CHECK (price>=1)
 );
@@ -28,3 +27,6 @@ price DECIMAL(10,2)  not null
  );
 
  
+insert into bamazon.products (product_name,department_name,price,stock_quantity) values ('iphone','Electronics',850,25);
+
+SELECT * from bamazon.products ;

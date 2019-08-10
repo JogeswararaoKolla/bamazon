@@ -68,4 +68,8 @@ select * from bamazon.orders;
 
 delete from bamazon.orders where orderid in('BAMZN-ID-2203-1565428998','BAMZN-ID-2204-1565429090');
 
- 
+ select a.department_id,b.department_name,b.over_head_costs,sum(a.totalprice) as product_sales , 
+sum(a.totalprice) -  b.over_head_costs as total_profit from orders a inner join departments b on 
+a.department_id=b.department_id  group by a.department_id,b.department_name,b.over_head_costs 
+order by a.department_id,b.department_name,b.over_head_costs;
+

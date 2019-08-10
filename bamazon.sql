@@ -18,14 +18,14 @@ lst_updt_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTA
 alter table bamazon.products AUTO_INCREMENT=2201;
 
 create table bamazon.orders(
-orderid varchar(30) not null primary key ,
+orderid varchar(30) not null  ,
 orderdate date not null,
 order_create_timestamp DATETIME not null default CURRENT_TIMESTAMP,
 item_id int not null,
-product_name varchar(40) not null,
-price DECIMAL(10,2)  not null
+totalprice DECIMAL(10,2)  not null,
+primary key(orderid,item_id)
  );
-
+ 
  
 insert into bamazon.products (product_name,department_name,price,stock_quantity) values ('iphone','Electronics',850,25);
 

@@ -23,7 +23,7 @@ const connection = mysql.createConnection({
 
 connection.connect(function (err, res) {
   if (err) throw err;
-  console.log(chalk.blue("Database connected!"));
+  // console.log(chalk.blue("Database connected!"));
   mainList();
 });
 
@@ -42,15 +42,15 @@ function mainList() {
       }
     ])
     .then(function (answers) {
-      switch(answers.action){
-        case 'View Products for sale' : viewProducts(); break;
-        case 'Buy Products' : buyProduct(); break;
-        case 'Exit App' : exit(); break;
+      switch (answers.action) {
+        case 'View Products for sale': viewProducts(); break;
+        case 'Buy Products': buyProduct(); break;
+        case 'Exit App': exit(); break;
       }
     });
 }
 
-function exit(){
+function exit() {
   console.log("Exiting the BAMAZON App..");
   disconnectDatabase();
 }
@@ -63,7 +63,7 @@ function viewProducts() {
       Rownew.cell('ProductName', resObj.product_name)
       Rownew.cell('Price', resObj.price, Table.number(2))
       Rownew.cell('Quantity', resObj.stock_quantity)
-      Rownew.cell('DepartmentName', resObj.department_name)
+      Rownew.cell('DepartmentName', resObj.department_id)
       Rownew.cell('DateTimeCreated', moment(resObj.created_timestamp).format('LLL'))
       Rownew.newRow()
     });
@@ -102,27 +102,45 @@ function buyProduct() {
       }
     ])
     .then(function (answers) {
-      const query = "SELECT price ,product_name,stock_quantity FROM PRODUCTS WHERE item_id=? and stock_quantity>=?";
+      const query = "SELECT price,department_id,product_name,stock_quantity FROM PRODUCTS WHERE item_id=? and stock_quantity>=?";
       connection.query(query, [answers.productID, answers.qnty], function (errors, results, fields) {
         if (errors) throw errors;
         if (!results.length) {
           console.log("Insufficient quantity!");
+          disconnectDatabase();
         }
-          results.forEach(function(element) {
-          const remaningQtny=element.stock_quantity-answers.qnty;
-          connection.query("UPDATE products SET ? where ?",[{stock_quantity:remaningQtny},{item_id:answers.productID}],function(errors,results,fields){
-             if(errors)  throw errors;
+        results.forEach(function (element) {
+          const remaningQtny = element.stock_quantity - answers.qnty;
+          connection.query("UPDATE products SET ? where ?", [{ stock_quantity: remaningQtny }, { item_id: answers.productID }], function (errors, results, fields) {
+            if (errors) throw errors;
             const orderID = 'BAMZN-ID-' + answers.productID + '-' + moment().format("X");
             const totalCost = (answers.qnty * element.price).toFixed(2);
-            tableRow.cell('OrderID', orderID);
-            tableRow.cell('ProductName', element.product_name);
-            tableRow.cell('Price', element.price);
-            tableRow.cell('Qnty', answers.qnty);
-            tableRow.cell('TotalCost', totalCost);
-            tableRow.newRow();
-            console.log("Your order placed successfully!");
-            console.log(tableRow.toString());
-            disconnectDatabase();
+            const query_2 = connection.query(
+              "INSERT INTO orders SET ?",
+              {
+                orderid: orderID,
+                orderdate: moment().format("YYYY-MM-DD"),
+                item_id: answers.productID,
+                order_qtny: answers.qnty,
+                department_id: element.department_id,
+                totalprice: totalCost
+              },
+              function (err, res) {
+                if (err) throw err;
+                console.log(res.affectedRows + " Order inserted!\n");
+                tableRow.cell('OrderID', orderID);
+                tableRow.cell('ProductName', element.product_name);
+                tableRow.cell('Price', element.price);
+                tableRow.cell('Qnty', answers.qnty);
+                tableRow.cell('TotalCost', totalCost);
+                tableRow.newRow();
+                console.log("Your order placed successfully!");
+                console.log(tableRow.toString());
+                disconnectDatabase();
+              }
+            );
+            // logs the actual query being run
+            // console.log(query_2.sql);
           });
 
         });
@@ -132,9 +150,9 @@ function buyProduct() {
     });
 }
 
-function disconnectDatabase(){
+function disconnectDatabase() {
   connection.end(function (err, res) {
     if (err) throw err;
-    console.log(chalk.red("Database Disconnected!"));
+    // console.log(chalk.red("Database Disconnected!"));
   });
 }

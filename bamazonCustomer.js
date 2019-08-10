@@ -91,9 +91,7 @@ function buyProduct() {
         type: 'number',
         name: 'qnty',
         message: 'how many units of the product would like to buy ?',
-        default: function (response) {
-          return response.confirmToBuy ? 1 : 0;
-        },
+        default: 1,
         validate: function (qnty) {
           const qtyCheck = parseInt(qnty);
           if (!qtyCheck) {
@@ -112,7 +110,6 @@ function buyProduct() {
         }
           results.forEach(function(element) {
           const remaningQtny=element.stock_quantity-answers.qnty;
-          console.log(remaningQtny);
           connection.query("UPDATE products SET ? where ?",[{stock_quantity:remaningQtny},{item_id:answers.productID}],function(errors,results,fields){
              if(errors)  throw errors;
             const orderID = 'BAMZN-ID-' + answers.productID + '-' + moment().format("X");
@@ -127,9 +124,11 @@ function buyProduct() {
             console.log(tableRow.toString());
             disconnectDatabase();
           });
+
         });
+
       });
-   
+
     });
 }
 

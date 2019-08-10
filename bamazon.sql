@@ -25,8 +25,16 @@ item_id int not null,
 totalprice DECIMAL(10,2)  not null,
 primary key(orderid,item_id)
  );
- 
- 
-insert into bamazon.products (product_name,department_name,price,stock_quantity) values ('iphone','Electronics',850,25);
 
-SELECT * from bamazon.products ;
+ 
+insert into bamazon.products (product_name,department_name,price,stock_quantity) values ('Iphone','Electronics',850,25);
+
+insert into bamazon.products (product_name,department_name,price,stock_quantity) values ('ComputerDesk','Homeproducts',39.99,10);
+
+insert into bamazon.products (product_name,department_name,price,stock_quantity) values ('Notebooks','Education',19.50,10);
+
+insert into bamazon.products (product_name,department_name,price,stock_quantity) values ('Laptop','Electronics',1500,25);
+
+SELECT * from bamazon.products LIMIT 5;
+
+delete from bamazon.products where item_id=2201;

@@ -16,7 +16,7 @@ const connection = mysql.createConnection({
 
 connection.connect(function (err, res) {
     if (err) throw err;
-    console.log(chalk.blue("Database Connected!"));
+    // console.log(chalk.blue("Database Connected!"));
     mainManagerList();
 });
 
@@ -246,7 +246,7 @@ function LowInventoryProducts() {
 function disconnectDatabase() {
     connection.end(function (err, res) {
         if (err) throw err;
-        console.log(chalk.red("Database Disconnected!"));
+        // console.log(chalk.red("Database Disconnected!"));
     });
 }
 

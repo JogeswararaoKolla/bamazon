@@ -12,7 +12,6 @@ require('dotenv').config();
 //  }
 //  console.log(result.parsed)
 
-const Rownew = new Table;
 let tableRow = new Table;
 const connection = mysql.createConnection({
   host: process.env.DB_HOST,
@@ -59,15 +58,15 @@ function viewProducts() {
   connection.query("SELECT * from bamazon.products", function (err, res) {
     if (err) throw err;
     res.forEach(function (resObj) {
-      Rownew.cell('ItemId', resObj.item_id)
-      Rownew.cell('ProductName', resObj.product_name)
-      Rownew.cell('Price', resObj.price, Table.number(2))
-      Rownew.cell('Quantity', resObj.stock_quantity)
-      Rownew.cell('DepartmentName', resObj.department_id)
-      Rownew.cell('DateTimeCreated', moment(resObj.created_timestamp).format('LLL'))
-      Rownew.newRow()
+      tableRow.cell('ItemId', resObj.item_id)
+      tableRow.cell('ProductName', resObj.product_name)
+      tableRow.cell('Price', resObj.price, Table.number(2))
+      tableRow.cell('Quantity', resObj.stock_quantity)
+      tableRow.cell('DepartmentName', resObj.department_id)
+      tableRow.cell('DateTimeCreated', moment(resObj.created_timestamp).format('LLL'))
+      tableRow.newRow()
     });
-    console.log(Rownew.toString());
+    console.log(tableRow.toString());
   });
   disconnectDatabase();
 }

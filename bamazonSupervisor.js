@@ -150,12 +150,12 @@ function createNewDepartment() {
 function disconnectDatabase() {
     connection.end(function (err, res) {
         if (err) throw err;
-        console.log(chalk.red("Database Disconnected!"));
+        // console.log(chalk.red("Database Disconnected!"));
     });
 }
 
 connection.connect(function (err, res) {
     if (err) throw err;
-    console.log(chalk.blue("Database Connected!"));
+    // console.log(chalk.blue("Database Connected!"));
     mainSupervisorList();
 });

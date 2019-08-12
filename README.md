@@ -26,3 +26,18 @@ Amazon like store front to buy products and view product sales and so on. Which 
   2) Create New Department
   3) Remove a Department
   4) Exit App
+
+<img src="./bamazon_Outputs/1.png">
+<img src="./bamazon_Outputs/2.png">
+<img src="./bamazon_Outputs/3.png">
+<img src="./bamazon_Outputs/4.png">
+<img src="./bamazon_Outputs/5.png">
+<img src="./bamazon_Outputs/6.png">
+<img src="./bamazon_Outputs/7.png">
+<img src="./bamazon_Outputs/8.png">
+<img src="./bamazon_Outputs/9.png">
+<img src="./bamazon_Outputs/10.png">
+<img src="./bamazon_Outputs/11.png">
+<img src="./bamazon_Outputs/12.png">
+<img src="./bamazon_Outputs/13.png">
+

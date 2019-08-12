@@ -42,3 +42,7 @@ Amazon like store front to buy products and view product sales and so on. Which 
 
 <img src="./bamazon_Outputs/4.png">
 <img src="./bamazon_Outputs/5.png">
+<img src="./bamazon_Outputs/14.png">
+<img src="./bamazon_Outputs/15.png">
+<img src="./bamazon_Outputs/16.png">
+<img src="./bamazon_Outputs/17.png">

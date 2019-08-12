@@ -10,6 +10,10 @@ Amazon like store front to buy products and view product sales and so on. Which 
   1) View Products for sale
   2) Buy Products
   3) Exit App
+
+<img src="./bamazon_Outputs/1.png">
+<img src="./bamazon_Outputs/2.png">
+<img src="./bamazon_Outputs/3.png">
   
 # 2: Manager View 
 
@@ -20,18 +24,6 @@ Amazon like store front to buy products and view product sales and so on. Which 
  4) Add New Product 
  5) Exit App 
 
-# 3: Supervisor View
- Welcome to BAMAZON Store SupervisorView! 
-  1) View Product Sales by Department
-  2) Create New Department
-  3) Remove a Department
-  4) Exit App
-
-<img src="./bamazon_Outputs/1.png">
-<img src="./bamazon_Outputs/2.png">
-<img src="./bamazon_Outputs/3.png">
-<img src="./bamazon_Outputs/4.png">
-<img src="./bamazon_Outputs/5.png">
 <img src="./bamazon_Outputs/6.png">
 <img src="./bamazon_Outputs/7.png">
 <img src="./bamazon_Outputs/8.png">
@@ -41,3 +33,12 @@ Amazon like store front to buy products and view product sales and so on. Which 
 <img src="./bamazon_Outputs/12.png">
 <img src="./bamazon_Outputs/13.png">
 
+# 3: Supervisor View
+ Welcome to BAMAZON Store SupervisorView! 
+  1) View Product Sales by Department
+  2) Create New Department
+  3) Remove a Department
+  4) Exit App
+
+<img src="./bamazon_Outputs/4.png">
+<img src="./bamazon_Outputs/5.png">

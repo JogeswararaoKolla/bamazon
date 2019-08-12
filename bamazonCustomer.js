@@ -33,7 +33,7 @@ function mainList() {
       {
         name: "action",
         type: "rawlist",
-        message: "Welcome to BAMAZON Store !",
+        message: "Welcome to BAMAZON Store CustomerView!",
         choices: [
           "View Products for sale",
           "Buy Products",
